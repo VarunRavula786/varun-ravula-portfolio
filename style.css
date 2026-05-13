@@ -53,6 +53,16 @@ nav ul a:hover { color: var(--text); text-decoration: none; }
 }
 .btn-nav:hover { opacity: 0.85; text-decoration: none !important; }
 
+/* ── Profile Photo ── */
+.profile-photo {
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--accent);
+  box-shadow: 0 0 0 6px rgba(88,166,255,0.1);
+  margin-bottom: 24px;
+}
+
 /* ── Hero ── */
 #hero {
   min-height: 100vh;
@@ -243,6 +253,61 @@ footer {
 .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
 .fade-in.visible { opacity: 1; transform: translateY(0); }
 
+/* ── Floating Pill ── */
+.floating-pill {
+  position: fixed;
+  bottom: 28px;
+  left: 28px;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(22, 27, 34, 0.92);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+  padding: 8px 16px 8px 8px;
+  border-radius: 50px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  transition: border-color 0.2s;
+}
+.floating-pill:hover { border-color: var(--accent); }
+
+.pill-photo {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--accent);
+  flex-shrink: 0;
+}
+
+.pill-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+/* ── Hamburger ── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.hamburger span {
+  display: block;
+  width: 22px; height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
 /* ── Responsive ── */
 @media (max-width: 768px) {
   nav { padding: 12px 20px; }
@@ -255,7 +320,21 @@ footer {
 }
 
 @media (max-width: 480px) {
-  nav ul { display: none; }
+  .hamburger { display: flex; }
+  #nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0; right: 0;
+    flex-direction: column;
+    background: rgba(13, 17, 23, 0.97);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 24px;
+    gap: 16px;
+  }
+  #nav-links.open { display: flex; }
+  #nav-links li { list-style: none; }
   .about-highlights { grid-template-columns: 1fr; }
   .hero-cta { flex-direction: column; align-items: center; }
+  .floating-pill { bottom: 16px; left: 16px; }
 }
